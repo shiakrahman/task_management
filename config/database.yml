@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  timeout: 5000
+  username: postgres
+  password: postgres
+
+development:
+  <<: *default
+  database: task_management_development
+
+test:
+  <<: *default
+  database: task_management_test
+
+production:
+  <<: *default
+  database: task_management_production
+  username: <%= ENV['POSTGRES_USERNAME'] %>   # Use your PostgreSQL username here
+  password: <%= ENV['POSTGRES_PASSWORD'] %>   # Use your PostgreSQL password here
+  host: <%= ENV['POSTGRES_HOST'] %>           # Optional, use if you're using a remote host
