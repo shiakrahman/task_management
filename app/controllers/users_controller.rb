@@ -3,6 +3,7 @@ class UsersController < ApplicationController
       @user = User.new(user_params)
       if @user.save
         Rails.logger.info("User created successfully with email: #{@user.email}")
+        UserMailer.registration_email(@user).deliver_now
         render json:  @user, status: :created, serializer: UserSerializer
         
 
